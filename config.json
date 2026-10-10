@@ -1,0 +1,33 @@
+{
+	"version": 1,
+	"source_dir": "C:/data/music/choir",
+	"state_dir": ".sync-state",
+	"report_dir": ".sync-reports",
+	"ignore": [
+		".git/",
+		"__pycache__/",
+		"*.tmp",
+		".mscbackup/",
+		"~$*",
+		".DS_Store",
+		"combined/",
+		"work/"
+	],
+	"destinations": {
+		"router": {
+			"type": "local",
+			"root_dir": "Z:/music/choir"
+		},
+		"webhost": {
+			"type": "ftps",
+			"root_dir": "choir.unclecheah.com/data/music",
+			"host": "unclecheah.com",
+			"port": 21,
+			"username": "unclecheah@unclecheah.com",
+			"password": "uncle1218Pass",
+			"verify_certificate": false,
+			"verify_remote_contents": false,
+			"timeout": 60
+		}
+	}
+}

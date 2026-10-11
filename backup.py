@@ -8,12 +8,26 @@ import json
 import hashlib
 import time
 
-config = {}
-config['ftp'] = {}
-config['ftp']['site'] = "unclecheah.com"
-config['ftp']['user'] = "unclecheah@unclecheah.com"
-config['ftp']['pwd'] = "uncle1218Pass"
+CONFIGFILE = 'config.json'
 
+config = {}
+# config['ftp'] = {}
+# config['ftp']['site'] = "unclecheah.com"
+# config['ftp']['user'] = "unclecheah@unclecheah.com"
+# config['ftp']['pwd'] = "uncle1218Pass"
+
+# login
+# def ftpLogin ():
+# 	ftp = FTP (
+# 		host = config['ftp']['site'],
+# 		user = config['ftp']['user'],
+# 		passwd = config['ftp']['pwd']
+# 	)
+
+
+def readJson ():
+	with open(CONFIGFILE, 'r') as file:
+		return json.load (file)
 
 def get_file_md5(path):
 	with open (path, "rb") as f:
@@ -26,13 +40,8 @@ def get_ftp_md5(ftp_instance, remote_path):
 	ftp_instance.retrbinary(f'RETR {remote_path}', md5_hash.update)
 	return md5_hash.hexdigest()
 
-
-# login
-ftp = FTP (
-	host = config['ftp']['site'],
-	user = config['ftp']['user'],
-	passwd = config['ftp']['pwd']
-)
+def initHashLocal ():
+	pass
 
 
 def tMoveCursor():
@@ -45,11 +54,6 @@ def tWriteFile():
 		for i in range(101):
 			file.write (f"\rPreamble: {i}")
 			time.sleep (0.1)
-
-def tReadJson():
-	with open('config.json', 'r') as file:
-		config = json.load (file)
-		print (config['destinations']['webhost']['type'])
 
 def tRecurseDir():
 	basePath = Path("c:/data/tmp/music")
@@ -118,16 +122,21 @@ def tFile2Hash ():
 
 	return None
 
+def tStrInArr (config):
+	if "router" in config["destinations"]: print (config["destinations"]["router"]["root_dir"])
+
 
 # tMoveCursor()
 # tWriteFile()
-# tReadJson()
+config = readJson()
 # tRecurseDir()
 # tRecurseFtp (ftp, baseDir="/test.unclecheah.com/music")
 # tRepHash("File 2", "someHash2")
 # tReadFileByLine()
-tArraySplit()
+# tArraySplit()
 # tFile2Hash()
+tStrInArr(config)
+
 
 # print (get_file_md5("c:/data/music/choir/recordings/Misc/Signed By Ashes.m4a"))
 

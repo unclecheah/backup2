@@ -1,6 +1,5 @@
 {
 	"version": 1,
-	"source_dir": "C:/data/music/choir",
 	"state_dir": ".sync-state",
 	"report_dir": ".sync-reports",
 	"ignore": [
@@ -13,12 +12,20 @@
 		"combined/",
 		"work/"
 	],
-	"destinations": {
+	"nodes": {
+		"shock": {
+			"type": "local",
+			"root_dir": "c:/data/music/choir"
+		},
+		"surface9": {
+			"type": "local",
+			"root_dir": "c:/data/music/choir"
+		},
 		"router": {
 			"type": "local",
 			"root_dir": "Z:/music/choir"
 		},
-		"webhost": {
+		"web": {
 			"type": "ftps",
 			"root_dir": "choir.unclecheah.com/data/music",
 			"host": "unclecheah.com",

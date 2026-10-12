@@ -17,13 +17,13 @@ config = {}
 # config['ftp']['user'] = "unclecheah@unclecheah.com"
 # config['ftp']['pwd'] = "uncle1218Pass"
 
-# login
-# def ftpLogin ():
-# 	ftp = FTP (
-# 		host = config['ftp']['site'],
-# 		user = config['ftp']['user'],
-# 		passwd = config['ftp']['pwd']
-# 	)
+# ftp login
+def ftpLogin (node):
+	return FTP (
+		host = config["nodes"][node]["host"],
+		user = config["nodes"][node]["username"],
+		passwd = config["nodes"][node]["password"]
+	)
 
 
 def readConfig ():
@@ -65,7 +65,7 @@ def initHashLocal (node):
 	# get current hash file
 	fPath = Path (hashFile)
 	if fPath.is_file ():
-		with open (hashFile, "r") as file:
+		with open (hashFile, "r", encoding="utf-8") as file:
 			lines = file.readlines ()
 
 			for line in lines:
@@ -73,26 +73,63 @@ def initHashLocal (node):
 				arr = line.split (" ", 1);
 				fDict[arr[1]] = arr[0]
 
-	# print (fDict)
 
-	# calculate hash
-	for path in sorted (basePath.rglob("*")):
-		relPath = str (path.relative_to (dir))
-		# print (f"\rProcessing: {path}", end="", flush=True)
-		if isIgnored (path): continue
-		if str(relPath).replace ("\\", "/") in fDict:
-			print (f"Skipping: {relPath}\n", end="", flush=True)
-			continue
+	# get hash and write to file
+	with open (hashFile, "a", encoding="utf-8") as file:
+		for path in sorted (basePath.rglob("*")):
+			relPath = str (path.relative_to (dir))
+			print (f"Processing: {path}", flush=True)
+			if isIgnored (path): continue
+			if str(relPath).replace ("\\", "/") in fDict:
+				print (f"Skipping: {relPath}", flush=True)
+				continue
 
-		if path.is_file():
-			md5 = get_file_md5 (path)
-			fDict[str(relPath).replace("\\", "/")] = md5
-			# print (md5, relPath)
+			if path.is_file():
+				md5 = get_file_md5 (path)
+				pathStr = str(relPath).replace("\\", "/")
+				fDict[pathStr] = md5
+				file.write (f"{md5} {pathStr}\n")
 
-	# write to file
-	with open (hashFile, "w") as file:
-		for key in sorted(fDict):
-			file.write (f"{fDict[key]} {key}\n")
+def recurseFtp (node, cftp, baseDir, currDir = ""):
+	hashFile = f"{node}.hash"
+	rPath = f"{baseDir}/{currDir}".strip("/")
+	fDict = {}
+
+	# get current hash file
+	fPath = Path (hashFile)
+	if fPath.is_file ():
+		with open (hashFile, "r", encoding="utf-8") as file:
+			lines = file.readlines ()
+
+			for line in lines:
+				line = line.rstrip()
+				arr = line.split (" ", 1);
+				fDict[arr[1]] = arr[0]
+
+	# get hash and write to file
+	with open (hashFile, "a", encoding="utf-8") as file:
+		for name, facts in cftp.mlsd (rPath):
+			if name in (".", ".."): continue
+			relPath = os.path.join(currDir, name).replace("\\", "/")
+			print (f"Processing: {relPath}", flush=True)
+			if relPath in fDict:
+				print (f"Skipping: {relPath}", flush=True)
+				continue
+
+			if facts.get("type") == "dir": recurseFtp (node, cftp, baseDir, relPath)
+			elif facts.get("type") == "file":
+				if isIgnored (relPath): continue
+				md5 = get_ftp_md5 (cftp, config["nodes"][node]["rootDir"] + "/" + relPath)
+				fDict[relPath] = md5
+				file.write (f"{md5} {relPath}\n")
+
+def initHashFtp (node):
+	cftp = ftpLogin (node)
+	print ("Connected to ftp server")
+
+	baseDir = config["nodes"][node]["rootDir"]
+	recurseFtp (node, cftp, baseDir)
+
 
 
 def tMoveCursor():
@@ -201,6 +238,7 @@ config = readConfig()
 # tArraySplit()
 # tFile2Hash()
 # tStrInArr(config)
-initHashLocal("shock")
+# initHashLocal("shock")
+initHashFtp("web")
 
 

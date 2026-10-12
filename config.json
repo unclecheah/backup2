@@ -15,19 +15,19 @@
 	"nodes": {
 		"shock": {
 			"type": "local",
-			"root_dir": "c:/data/music/choir"
+			"rootDir": "c:/data/music/choir"
 		},
 		"surface9": {
 			"type": "local",
-			"root_dir": "c:/data/music/choir"
+			"rootDir": "c:/data/music/choir"
 		},
 		"router": {
 			"type": "local",
-			"root_dir": "Z:/music/choir"
+			"rootDir": "Z:/music/choir"
 		},
 		"web": {
 			"type": "ftps",
-			"root_dir": "choir.unclecheah.com/data/music",
+			"rootDir": "choir.unclecheah.com/data/music",
 			"host": "unclecheah.com",
 			"port": 21,
 			"username": "unclecheah@unclecheah.com",

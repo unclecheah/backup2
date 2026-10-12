@@ -7,6 +7,7 @@ import re
 import json
 import hashlib
 import time
+import fnmatch
 
 CONFIGFILE = 'config.json'
 
@@ -25,7 +26,7 @@ config = {}
 # 	)
 
 
-def readJson ():
+def readConfig ():
 	with open(CONFIGFILE, 'r') as file:
 		return json.load (file)
 
@@ -33,15 +34,65 @@ def get_file_md5(path):
 	with open (path, "rb") as f:
 		return hashlib.file_digest (f, "md5").hexdigest()
 
-
 def get_ftp_md5(ftp_instance, remote_path):
 	md5_hash = hashlib.md5()
 	# Stream the file directly into the hash calculator
 	ftp_instance.retrbinary(f'RETR {remote_path}', md5_hash.update)
 	return md5_hash.hexdigest()
 
-def initHashLocal ():
-	pass
+def isIgnored (path):
+	# path = path.replace ('\\', '/')
+	# pathParts = path.split ('/')
+	# filename = os.path.basename (path)
+	pathObj = Path (path)
+	pathParts = pathObj.parts
+	filename = pathObj.name
+
+	for pattern in config["ignore"]:
+		if pattern.endswith ('/'):
+			folderName = pattern.rstrip ('/')
+			if folderName in pathParts: return True
+		else:
+			if fnmatch.fnmatch (filename, pattern) or any (fnmatch.fnmatch (part, pattern) for part in pathParts): return True
+	return False
+
+def initHashLocal (node):
+	dir = config["nodes"][node]["rootDir"]
+	basePath = Path(dir)
+	hashFile = f"{node}.hash"
+	fDict = {}
+
+	# get current hash file
+	fPath = Path (hashFile)
+	if fPath.is_file ():
+		with open (hashFile, "r") as file:
+			lines = file.readlines ()
+
+			for line in lines:
+				line = line.rstrip()
+				arr = line.split (" ", 1);
+				fDict[arr[1]] = arr[0]
+
+	# print (fDict)
+
+	# calculate hash
+	for path in sorted (basePath.rglob("*")):
+		# print (f"\rProcessing: {path}", end="", flush=True)
+		if isIgnored (path): continue
+		if str(path) in fDict:
+			print (f"Skipping: {path}", end="", flush=True)
+			continue
+
+		if path.is_file():
+			relPath = path.relative_to (dir)
+			md5 = get_file_md5 (path)
+			fDict[str(relPath).replace("\\", "/")] = md5
+			# print (md5, relPath)
+
+	# write to file
+	with open (hashFile, "w") as file:
+		for key in sorted(fDict):
+			file.write (f"{fDict[key]} {key}\n")
 
 
 def tMoveCursor():
@@ -123,19 +174,7 @@ def tFile2Hash ():
 	return None
 
 def tStrInArr (config):
-	if "router" in config["destinations"]: print (config["destinations"]["router"]["root_dir"])
-
-
-# tMoveCursor()
-# tWriteFile()
-config = readJson()
-# tRecurseDir()
-# tRecurseFtp (ftp, baseDir="/test.unclecheah.com/music")
-# tRepHash("File 2", "someHash2")
-# tReadFileByLine()
-# tArraySplit()
-# tFile2Hash()
-tStrInArr(config)
+	if "router" in config["destinations"]: print (config["destinations"]["router"]["rootDir"])
 
 
 # print (get_file_md5("c:/data/music/choir/recordings/Misc/Signed By Ashes.m4a"))
@@ -144,4 +183,24 @@ tStrInArr(config)
 # print (get_ftp_md5 (ftp, "/choir.unclecheah.com/data/music/recordings/Misc/This Is The Day.m4a"));
 # print (get_ftp_md5 (ftp, "/choir.unclecheah.com/data/music/recordings/Misc/The See Of Peter.m4a"));
 # print (get_ftp_md5 (ftp, "/choir.unclecheah.com/data/music/recordings/Misc/Signed By Ashes.m4a"));
+
+# print (get_file_md5("c:/data/music/choir/recordings/Misc/Signed By Ashes.m4a"))
+
+# print (get_ftp_md5 (ftp, "/choir.unclecheah.com/data/music/recordings/Misc/Goodness Of God.mp3"));
+# print (get_ftp_md5 (ftp, "/choir.unclecheah.com/data/music/recordings/Misc/This Is The Day.m4a"));
+# print (get_ftp_md5 (ftp, "/choir.unclecheah.com/data/music/recordings/Misc/The See Of Peter.m4a"));
+# print (get_ftp_md5 (ftp, "/choir.unclecheah.com/data/music/recordings/Misc/Signed By Ashes.m4a"));
+
+config = readConfig()
+# tMoveCursor()
+# tWriteFile()
+# tRecurseDir()
+# tRecurseFtp (ftp, baseDir="/test.unclecheah.com/music")
+# tRepHash("File 2", "someHash2")
+# tReadFileByLine()
+# tArraySplit()
+# tFile2Hash()
+# tStrInArr(config)
+initHashLocal("shock")
+
 

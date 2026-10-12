@@ -77,14 +77,14 @@ def initHashLocal (node):
 
 	# calculate hash
 	for path in sorted (basePath.rglob("*")):
+		relPath = str (path.relative_to (dir))
 		# print (f"\rProcessing: {path}", end="", flush=True)
 		if isIgnored (path): continue
-		if str(path) in fDict:
-			print (f"Skipping: {path}", end="", flush=True)
+		if str(relPath).replace ("\\", "/") in fDict:
+			print (f"Skipping: {relPath}\n", end="", flush=True)
 			continue
 
 		if path.is_file():
-			relPath = path.relative_to (dir)
 			md5 = get_file_md5 (path)
 			fDict[str(relPath).replace("\\", "/")] = md5
 			# print (md5, relPath)

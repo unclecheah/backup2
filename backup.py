@@ -130,6 +130,29 @@ def initHashFtp (node):
 	baseDir = config["nodes"][node]["rootDir"]
 	recurseFtp (node, cftp, baseDir)
 
+def cmpHash (node1, node2):
+	def readHashes (file):
+		hashes = {}
+		with open (file, "r", encoding="utf-8-sig") as file:
+			for line in file:
+				line = line.rstrip ("\r\n")
+				if not line.strip (): continue
+
+				md5, filename = line.split (" ", 1)
+				hashes[filename] = md5
+
+		return hashes
+
+	first = readHashes (f"{node1}.hash")
+	second = readHashes (f"{node2}.hash")
+
+	for filename in sorted (first.keys() | second.keys()):
+		if filename not in second:
+			print (f"<<< {first[filename]} {filename}")
+		elif filename not in first:
+			print (f">>> {second[filename]} {filename}")
+		elif first[filename] != second[filename]:
+			print (f"xxx {filename}")
 
 
 def tMoveCursor():
@@ -238,7 +261,8 @@ config = readConfig()
 # tArraySplit()
 # tFile2Hash()
 # tStrInArr(config)
-# initHashLocal("shock")
-initHashFtp("web")
 
+initHashLocal("router")
+# initHashFtp("web")
+# cmpHash ("shock", "web")
 

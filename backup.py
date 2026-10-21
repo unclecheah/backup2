@@ -1,6 +1,6 @@
-from ftplib import FTP
+from ftplib import FTP, error_perm
 from datetime import datetime
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import os
 import io
 import re
@@ -8,14 +8,12 @@ import json
 import hashlib
 import time
 import fnmatch
+import shutil
+import sys
 
 CONFIGFILE = 'config.json'
 
 config = {}
-# config['ftp'] = {}
-# config['ftp']['site'] = "unclecheah.com"
-# config['ftp']['user'] = "unclecheah@unclecheah.com"
-# config['ftp']['pwd'] = "uncle1218Pass"
 
 # ftp login
 def ftpLogin (node):
@@ -29,6 +27,18 @@ def ftpLogin (node):
 def readConfig ():
 	with open(CONFIGFILE, 'r') as file:
 		return json.load (file)
+
+def readHashes (file):
+	hashes = {}
+	with open (file, "r", encoding="utf-8-sig") as file:
+		for line in file:
+			line = line.rstrip ("\r\n")
+			if not line.strip (): continue
+
+			md5, filename = line.split (" ", 1)
+			hashes[filename] = md5
+
+	return hashes
 
 def get_file_md5(path):
 	with open (path, "rb") as f:
@@ -131,18 +141,6 @@ def initHashFtp (node):
 	recurseFtp (node, cftp, baseDir)
 
 def cmpHash (node1, node2):
-	def readHashes (file):
-		hashes = {}
-		with open (file, "r", encoding="utf-8-sig") as file:
-			for line in file:
-				line = line.rstrip ("\r\n")
-				if not line.strip (): continue
-
-				md5, filename = line.split (" ", 1)
-				hashes[filename] = md5
-
-		return hashes
-
 	first = readHashes (f"{node1}.hash")
 	second = readHashes (f"{node2}.hash")
 
@@ -173,6 +171,128 @@ def updateHash (node, file, newHash):
 	if not found: lines.append (f"{newHash} {file}")
 
 	path.write_text ("\n".join (lines) + "\n", encoding="utf-8")
+
+def updateFile (srcNode, dstNode, file):
+	src = f"{config['nodes'][srcNode]['rootDir']}/{file}"
+	dst = f"{config['nodes'][dstNode]['rootDir']}/{file}"
+
+	destination = Path (dst)
+	destination.parent.mkdir (parents = True, exist_ok = True)
+
+	shutil.copy2 (src, destination)
+	hash = get_file_md5 (dst)
+	updateHash (dstNode, file, hash)
+
+def updateFtp (ftpC, srcNode, dstNode, file):
+	src = f"{config['nodes'][srcNode]['rootDir']}/{file}"
+	dst = f"{config['nodes'][dstNode]['rootDir']}/{file}"
+
+	destination = PurePosixPath (str (dst))
+	orgDir = ftpC.pwd ()
+
+	with open (src, "rb") as source:
+		for folder in destination.parent.parts:
+			if folder in ("/", "."): continue
+			try:
+				ftpC.cwd (folder)
+			except error_perm:
+				ftpC.mkd (folder)
+				ftpC.cwd (folder)
+
+		ftpC.storbinary (f"STOR {destination.name}", source, blocksize = 64 * 1024)
+
+	hash = get_ftp_md5 (ftpC, destination.name)
+	updateHash (dstNode, file, hash)
+	ftpC.cwd (orgDir)
+
+def bulkUpdFile (srcNode, dstNode):
+	first = readHashes (f"{srcNode}.hash")
+	second = readHashes (f"{dstNode}.hash")
+	toUpd = []
+
+	for filename in sorted (first.keys() | second.keys()):
+		if filename not in second:
+			print (f"Identified {filename}")
+			toUpd.append (filename)
+		elif filename not in first:
+			print (f">>> {second[filename]} {filename}")
+		elif first[filename] != second[filename]:
+			print (f"Identified {filename}")
+			toUpd.append (filename)
+	
+	# print (toUpd)
+	for item in toUpd:
+		print (f"Updating {item}")
+		updateFile (srcNode, dstNode, item)
+
+def bulkUpdFtp (ftpC, srcNode, dstNode):
+	first = readHashes (f"{srcNode}.hash")
+	second = readHashes (f"{dstNode}.hash")
+	toUpd = []
+
+	for filename in sorted (first.keys() | second.keys()):
+		if filename not in second:
+			print (f"Identified {filename}")
+			toUpd.append (filename)
+		elif filename not in first:
+			print (f">>> {second[filename]} {filename}")
+		elif first[filename] != second[filename]:
+			print (f"Identified {filename}")
+			toUpd.append (filename)
+	
+	# print (toUpd)
+	for item in toUpd:
+		print (f"Updating {item}")
+		updateFtp (ftpC, srcNode, dstNode, item)
+
+def msg ():
+	print (
+		"Usage: backup.py compare <src> <dst>\n"
+		"       backup.py update <src> dst>\n"
+	)
+
+def main ():
+	global config
+
+	if len(sys.argv) != 4:
+		msg ()
+		return
+
+	config = readConfig()
+	opn = sys.argv[1]
+	src = sys.argv[2]
+	dst = sys.argv[3]
+
+	if opn not in ["compare", "update"]:
+		print ("operation not recognized")
+		return
+
+	if (src not in config["nodes"]):
+		print ("source node not found")
+		return
+	if (dst not in config["nodes"]):
+		print ("destination node not found")
+		return
+
+	srcType = config["nodes"][src]["type"]
+	dstType = config["nodes"][dst]["type"]
+
+	if srcType != "local":
+		print ("source must be local")
+		return
+
+	if opn == "compare":
+		cmpHash (src, dst)
+		return
+
+	if opn == "update":
+		if dstType == "local":
+			bulkUpdFile (src, dst)
+		elif dstType == "ftps":
+			ftpC = ftpLogin (dst)
+			bulkUpdFtp (ftpC, src, dst)
+
+
 
 
 def tMoveCursor():
@@ -275,7 +395,9 @@ def tStrInArr (config):
 # print (get_ftp_md5 (ftp, "/choir.unclecheah.com/data/music/recordings/Misc/The See Of Peter.m4a"));
 # print (get_ftp_md5 (ftp, "/choir.unclecheah.com/data/music/recordings/Misc/Signed By Ashes.m4a"));
 
-config = readConfig()
+# config = readConfig()
+# ftpC = ftpLogin ('web2')
+
 # tMoveCursor()
 # tWriteFile()
 # tRecurseDir()
@@ -285,9 +407,14 @@ config = readConfig()
 # tArraySplit()
 # tFile2Hash()
 # tStrInArr(config)
-tUpdateHash()
+# tUpdateHash()
 
-# initHashLocal("router")
-# initHashFtp("web")
-# cmpHash ("shock", "web")
+# initHashLocal("shock2")
+# initHashFtp("web2")
+# cmpHash ("shock2", "router2")
+# updateFile ("shock2", "router2", "scores/SPG/A Banquet Is Prepared [SPG001].pdf")
+# updateFtp (ftpC, "shock2", "web2", "scores/SPG/A Banquet Is Prepared [SPG001].pdf")
+# bulkUpdFile ("shock2", "router2")
+# bulkUpdFtp (ftpC, "shock2", "web2")
 
+if __name__ == "__main__": main ()

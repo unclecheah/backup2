@@ -154,6 +154,26 @@ def cmpHash (node1, node2):
 		elif first[filename] != second[filename]:
 			print (f"xxx {filename}")
 
+def updateHash (node, file, newHash):
+	path = Path (f"{node}.hash")
+	lines = (
+		path.read_text (encoding="utf-8-sig").splitlines ()
+		if path.exists ()
+		else []
+	)
+	found = False
+
+	for index, line in enumerate (lines):
+		oldHash, separator, storedFilename = line.partition (" ")
+
+		if separator and storedFilename == file:
+			lines[index] = f"{newHash} {storedFilename}"
+			found = True
+
+	if not found: lines.append (f"{newHash} {file}")
+
+	path.write_text ("\n".join (lines) + "\n", encoding="utf-8")
+
 
 def tMoveCursor():
 	for i in range(101):
@@ -200,6 +220,10 @@ def tReadFileByLine ():
 
 	for line in lines:
 		print (line)
+
+def tUpdateHash ():
+	# updateHash ("test", "musescore/Beloved.mscz", "414f86225154dd5e25974ff03533zzzz")
+	updateHash ("test", "musescore/Beloved2.mscz", "414f86225154dd5e25974ff03533zzzz")
 
 def tArraySplit ():
 	arr = [];
@@ -261,8 +285,9 @@ config = readConfig()
 # tArraySplit()
 # tFile2Hash()
 # tStrInArr(config)
+tUpdateHash()
 
-initHashLocal("router")
+# initHashLocal("router")
 # initHashFtp("web")
 # cmpHash ("shock", "web")
 

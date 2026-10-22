@@ -7,7 +7,6 @@
 ac043dfd3dd3619c398a289010db7a24 recordings/Heart/Here O My Lord I See Thee Face To Face [C9].m4a
 a3782d8c81b4921ae446ca7d9ab720d0 recordings/Heart/What Can We Offer [B27].m4a
 28b6d1d7a5978445352d100be6ada5d4 recordings/Heart/Everlasting Light [L7].m4a
-eb0e6bff4b20d1257d95fdcab4341367 recordings/Heart/Great Is Thy Faithfulness [D8].tenor.m4a
 0727118b37b96f68b769a220f2c564bc recordings/Heart/Lamb of God (SATB).T.m4a
 a24a9354b95ed116b5be0169737dcc98 recordings/Heart/Angels We Have Heard On High [J3].A.m4a
 f16f319f34fb82b8be45a6213f09476f recordings/Heart/Joy To The World [J13].A.m4a
@@ -23,7 +22,7 @@ f628b6b10201e7435da3366d51d8fc13 recordings/Heart/Joy To The World [J13].S.m4a
 cc0bd38ad0d7d73c1ad72d40611e9160 recordings/Heart/Joy To The World [J13].T.m4a
 7d41bc083f7942134a106cd22d04a060 recordings/Heart/Gifts Of Bread And Wine [C7].link
 91e7b3d86a4a5527c1fc1794a8ac814a recordings/Misc/Be Still For The Presence Of The Lord.mp3
-5bb44c49e6457e40544df6db465c1dea recordings/Misc/Behold The Lamb.mp3
+6106e67bc7a5a47c8ed61fe5dfed5331 recordings/Misc/Behold The Lamb.mp3
 09240c696ea78bb8b8b4e82ffec75b9f recordings/Misc/Glory And Praise Forever.mp3
 d56eb1796ebbaea2f45be9dc9a12ebb5 recordings/Misc/Goodness Of God.mp3
 bf49b2ae2294d83db1704d2b17ae0d1e recordings/Misc/Salve Regina.mp3
@@ -1490,7 +1489,6 @@ bc38b64147bdbbabee18ee5585ba9247 scores/Misc/Joy To The World.pdf
 f5b04e70e54f9344a967e964721b65b8 scores/Misc/Kyrie - Mass Of Remembrance.pdf
 294625e5e5b5146bc4b1321e910fb50c scores/Misc/Lamb Of God (Christopher Walker).pdf
 0dbf6af324c428506481076d0dc20572 scores/Misc/Lenten Gospel Acclamation (2).pdf
-56666f4fe2bcdd4b86d24dbb473ef52b scores/Misc/Magnificat (Haas) (2).pdf
 ccb35416f7dee58d4fcfe242e9a48a9f scores/Misc/Magnificat (Haas) (SATB).pdf
 f1ebb46bf03a986530ee0013fc3940c3 scores/Misc/Let There Be Love.pdf
 e835026998da25d9cb2ad223c205714d scores/Misc/Light Of Christ.pdf
@@ -2431,7 +2429,6 @@ cf36f853e43ae6ee1ca3d9c3451c0154 scores/Psalms/Psalm Yr A Easter 04 (022) - The 
 3a40067ca4d921d64974ce961bda5cbe scores/Psalms/Psalm 097 - The Lord Is King (Rory Cooney) -kb-.pdf
 7517e25d5a1a243dbb63c7fcfaa0ea08 scores/Psalms/Psalm Yr A Lent 04 (022) - The Lord Is My Shepherd.pdf
 462c99b5d310a646b9d63d6780529a7f scores/Psalms/Psalm 097 - The Lord Is King (Rory Cooney).pdf
-4c4a070d639e7135e36cb6012f852e69 scores/Psalms/Psalm 126 - The Lord Has Done Great Things For Us --.pdf
 f6a5e4a735a1903fc07b4411e555ef1f scores/Psalms/Psalm 102 - The Lord Is Compassion And Love (Evelyn Lee) --.pdf
 7be5f9e708116e7fc24cfdf3360742c3 scores/Psalms/Psalm 138 - On The Day I Called.pdf
 c1a678789011067ea56b1ff5786b16c7 scores/Psalms/Psalm 102 - The Lord Is Compassion And Love (Evelyn Lee).pdf
@@ -2450,13 +2447,9 @@ b4ec1e6bb8b041fc8b765bab60a898c7 scores/Psalms/Psalm 104 - Send Forth Your Spiri
 6b1b33efd5289c091443c38a001feb7d scores/Psalms/Psalm 146 - I Will Praise The Lord (Farrell).pdf
 98dbbc175fcf443893fb4b1dbcaaeb22 scores/Psalms/Psalm 117 - Give Thanks To The Lord For He Is Good (AK).pdf
 b0102c7a3b425b27bd5bc3ddf6e3076a scores/Psalms/Psalm 146 - My Soul Gives Praise (Malcolm Nerva).pdf
-1673406366a271d5db99a3844584c43e scores/Psalms/Psalm 118 - Easter Alleluia Psalm (Paul Inwood) --.pdf
 234538f52f37140c33ff88f194f21aa7 scores/Psalms/Psalm Yr A Ord 14 (145) - I Will Praise Your Name --.pdf
-15aab50b94bdae3f2c5fc6ba9e8e82eb scores/Psalms/Psalm 118 - Easter Alleluia Psalm (Paul Inwood).pdf
 74b88d6c19d38e2c6b3443bb5cf75802 scores/Psalms/Psalm Yr A Ord 13 (089) - Forever I Will Sing.pdf
-18a88a651482f931978dbafb50880007 scores/Psalms/Psalm 118 - This Is The Day (Scott Soper) -kb-.pdf
 0499d1405b972a922ab9f14dc9bc2acc scores/Psalms/Psalm Yr A Ord 14 (144) - I Will Bless Your Name Forever.pdf
-371f6c947d9e78522121cf7fb1e88eb9 scores/Psalms/Psalm 118 - This Is The Day (Scott Soper).pdf
 8fef1beb161bd40a8f3c5cca36696596 scores/Psalms/Psalm Yr A Adv 01 (121) - I Rejoiced When I Heard Them Say.pdf
 17f26e735c50f20c5feaeba8a4cfa96c scores/Psalms/Psalm 121 - I Rejoiced When I Heard Them Say (AlexC) --.pdf
 44f8d36f1ab53db5fe58294a603c588d scores/Psalms/Psalm Yr A Adv 02 (071) - In His Days Justice Shall Flourish.pdf
@@ -2803,7 +2796,6 @@ a21408d5b0c97d62b9c4dc4f1aa4dec6 scores/Psalms/Psalm Yr C Christ The King (121) 
 fedabc0d2d41b5b1ca9decc3b30a264e scores/Psalms/Psalm Yr ABC All Souls (026) - I Am Sure I Shall See The Lord's Goodness (AC).pdf
 ff17f8a397c298256a79d75a08ae2c14 scores/Psalms/Psalm Yr A Adv 01 (121) - I Rejoiced When I Heard Them Say (AC).pdf
 e0f4bffc5b5b21cbca9867381dd38698 scores/Psalms/Psalm Yr A Adv 02 (071) - In His Days Justice Shall Flourish (AC).pdf
-b4ddd6aa701f3533d5cc31bed0e53c48 scores/Psalms/Psalm 126 - The Lord Has Done Great Things (Jaime Cortez) --.pdf
 fd814d0be2530bf381cedb365aec32d4 scores/Psalms/Psalm Yr ABC All Souls (026) - The Lord Is My Light And My Help (AC).pdf
 5c4f1a0b1b6f542eb594e53fd03c3a90 scores/Psalms/Psalm Yr C Triduum Day 3 (1 Chron 29) - We Praise Your Glorious Name (AC).pdf
 91c07f496513ab544d1a852b5329abc0 scores/Psalms/Psalm Yr C Lateran Basilica (045) - The Waters Of A River (AC).pdf
@@ -3242,7 +3234,6 @@ f53e7672838df72b388021ec6f1214e8 scores/SPG/With Holy Choirs Of Angels [SPG365].
 04ec4a56cb2077689551e7584fc394b4 scores/SPG/Ye Sons And Daughters [SPG366].pdf
 04ec4a56cb2077689551e7584fc394b4 scores/SPG/You Are Near [SPG367].pdf
 0493e8ce442766cebfacbbabe83bac67 scores/SPG/Your Words Are Spirit And Life [SPG368].pdf
-8ee3b6cc5054c6557754d68979afd029 .timestamp.log
 ac8a28ccb7930989841477aa3db23d0c musescore/Written In Red.mscz
 688fc86de2c6480e48bbeb8149c707a5 musescore/Arise Shine.mscz
 903c380bef8749f05b5221b44a846759 musescore/Be Still For The Presence Of The Lord.mscz
@@ -3468,3 +3459,14 @@ d471336fdfc33ee5c7278a0cccfe9a8f musescore/To Believe SATB.mscz
 67309e73e1e64deb73c1647ad8853806 musescore/To Believe v2.mscz
 5fdfe5e106c4295f979e956ab97cacad musescore/To Believe.mscz
 f924ff0fcf0899e41b628161e21a817f musescore/To Rescue A Sinner Like Me.mscz
+064ee6b7c2044619f521779bf9ad722c musescore/Psalm - Kevin's Wedding.mscz
+eb0e6bff4b20d1257d95fdcab4341367 recordings/Heart/Great Is Thy Faithfulness [D8].T.m4a
+806cafd83846175981fa9b741c44f9bd recordings/Misc/We Are The Reason.mp3
+f181367128ca56b1e7fe51be58b523e5 scores/Misc/Broken And Spilled Out (Benji).pdf
+56666f4fe2bcdd4b86d24dbb473ef52b scores/Misc/Magnificat (Haas) 2.pdf
+20379e5f4c7040d335983cb28bdb3255 scores/Misc/To Rescue A Sinner Like Me SATB.pdf
+f2514f10592dff851741daff48c22224 scores/Psalms/Psalm - Kevin's Wedding.pdf
+1673406366a271d5db99a3844584c43e scores/Psalms/Psalm Yr ABC Easter (118) - Alleluia (Paul Inwood) --.pdf
+15aab50b94bdae3f2c5fc6ba9e8e82eb scores/Psalms/Psalm Yr ABC Easter (118) - Alleluia (Paul Inwood).pdf
+18a88a651482f931978dbafb50880007 scores/Psalms/Psalm Yr ABC Easter (118) - This Is The Day (Scott Soper) -kb-.pdf
+371f6c947d9e78522121cf7fb1e88eb9 scores/Psalms/Psalm Yr ABC Easter (118) - This Is The Day (Scott Soper).pdf

@@ -173,13 +173,12 @@ def updateHash (node, file, newHash):
 	path.write_text ("\n".join (lines) + "\n", encoding="utf-8")
 
 def updateFile (srcNode, dstNode, file):
-	src = f"{config['nodes'][srcNode]['rootDir']}/{file}"
-	dst = f"{config['nodes'][dstNode]['rootDir']}/{file}"
+	src = Path (config['nodes'][srcNode]['rootDir']) / file
+	dst = Path (config['nodes'][dstNode]['rootDir']) / file
 
-	destination = Path (dst)
-	destination.parent.mkdir (parents = True, exist_ok = True)
+	dst.parent.mkdir (parents = True, exist_ok = True)
 
-	shutil.copy2 (src, destination)
+	shutil.copy2 (src, dst)
 	hash = get_file_md5 (dst)
 	updateHash (dstNode, file, hash)
 

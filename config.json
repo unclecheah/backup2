@@ -23,7 +23,7 @@
 		},
 		"router": {
 			"type": "local",
-			"rootDir": "Z:/music/choir"
+			"rootDir": "Z:/Music/choir"
 		},
 		"web": {
 			"type": "ftps",

@@ -262,10 +262,19 @@ def main ():
 	config = readConfig()
 	opn = sys.argv[1]
 	src = sys.argv[2]
-	if len(sys.argv) > 3: dst = sys.argv[3]
+	srcType = config["nodes"][src]["type"]
+
+	if len(sys.argv) > 3:
+		dst = sys.argv[3]
+		dstType = config["nodes"][dst]["type"]
 
 	if opn not in ["compare", "update", "init"]:
 		print ("operation not recognized")
+		return
+
+	if opn == "init":
+		if srcType == "local": initHashLocal (src)
+		elif srcType == "ftps": initHashFtp (src)
 		return
 
 	if (src not in config["nodes"]):
@@ -273,14 +282,6 @@ def main ():
 		return
 	if (dst not in config["nodes"]):
 		print ("destination node not found")
-		return
-
-	srcType = config["nodes"][src]["type"]
-	dstType = config["nodes"][dst]["type"]
-
-	if opn == "init":
-		if srcType == "local": initHashLocal (src)
-		elif srcType == "ftps": initHashFtp (src)
 		return
 
 	if srcType != "local":

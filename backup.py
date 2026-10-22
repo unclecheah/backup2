@@ -249,21 +249,22 @@ def msg ():
 	print (
 		"Usage: backup.py compare <src> <dst>\n"
 		"       backup.py update <src> dst>\n"
+		"       backup.py init <src>\n"
 	)
 
 def main ():
 	global config
 
-	if len(sys.argv) != 4:
+	if len(sys.argv) < 3:
 		msg ()
 		return
 
 	config = readConfig()
 	opn = sys.argv[1]
 	src = sys.argv[2]
-	dst = sys.argv[3]
+	if len(sys.argv) > 3: dst = sys.argv[3]
 
-	if opn not in ["compare", "update"]:
+	if opn not in ["compare", "update", "init"]:
 		print ("operation not recognized")
 		return
 
@@ -276,6 +277,11 @@ def main ():
 
 	srcType = config["nodes"][src]["type"]
 	dstType = config["nodes"][dst]["type"]
+
+	if opn == "init":
+		if srcType == "local": initHashLocal (src)
+		elif srcType == "ftps": initHashFtp (src)
+		return
 
 	if srcType != "local":
 		print ("source must be local")
@@ -290,6 +296,7 @@ def main ():
 			bulkUpdFile (src, dst)
 		elif dstType == "ftps":
 			ftpC = ftpLogin (dst)
+			print ("Connected to ftp server")
 			bulkUpdFtp (ftpC, src, dst)
 
 

@@ -248,7 +248,7 @@ def bulkUpdFtp (ftpC, srcNode, dstNode):
 def msg ():
 	print (
 		"Usage: backup.py compare <src> <dst>\n"
-		"       backup.py update <src> dst>\n"
+		"       backup.py update <src> <dst>\n"
 		"       backup.py init <src>\n"
 	)
 

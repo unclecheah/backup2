@@ -14,7 +14,7 @@ ac66d84c6d6c0e32c59c298437d4f3d3 musescore/I Give Myself To You.mscz
 56b68596a346fa88c1fff05787f32665 musescore/In Every Age [BB469; bb472] D.mscz
 f6ff46fd39819eb111660d25abadce56 musescore/In Every Age [BB469; bb472] G.mscz
 65bd3c7927ba828f06e12b7770e39ab9 musescore/Intone.mscz
-56797352637e1f5172715f844595d091 musescore/Karena Aku Kau Cinta.mscz
+c0b2b7789ac96dfd2d886bb0a4fe531c musescore/Karena Aku Kau Cinta.mscz
 b485ca5a483d1d9ed8871dc270774f9c musescore/Kyrie - Mass Of Remembrance.mscz
 3035bf9a48b02aa22ed7c2ded5e7a214 musescore/Lamb Of God.mscz
 c61ecb3e8109a810d82ef6c2b2426666 musescore/Litany Of Saints 2.mscz
@@ -586,7 +586,7 @@ ce58964b6963a16b6836b2951c568120 scores/BB/Be Not Afraid [BB431; bb432].pdf
 6093ec5cce1f5c815e562726477402d2 scores/BB/Be Still My Soul [BB696; bb679].pdf
 9677a00d717985060d7aa86e58b80548 scores/BB/Be Thou My Vision [BB398; bb382].pdf
 e62629f2ccabb2a4194b0a78946eb97d scores/BB/Beautiful Saviour [BB202; bb199].pdf
-f5ccd50015299df2efad4034f9b14fb0 scores/BB/Beautitudes [BB642; bb616].pdf
+02fdb68e24c446d8b926c5f85028294e scores/BB/Beautitudes [BB642; bb616].pdf
 036c97ffdfeea1eafccbd373d2aeae55 scores/BB/Because The Lord Is My Shepherd [BB464; bb475].pdf
 9204960d7327ed08c878866ab0b04d56 scores/BB/Behold The Cross [BB149; bb149].pdf
 3aa7b78244148e9131dc0da332f507a1 scores/BB/Behold The Lamb [BB337; bb319].pdf
@@ -1735,7 +1735,7 @@ f00ad00fd4c24a3f2485c722b3970bfb scores/Misc/John 3-16.pdf
 f874ff111b57b3a0224cad1ad755e577 scores/Misc/Joy To The World --.pdf
 bc38b64147bdbbabee18ee5585ba9247 scores/Misc/Joy To The World.pdf
 5a42a291559b6817a7bc1787e9c5720b scores/Misc/Jubilate Servite.pdf
-0b19aee66e00f6bb18073f07a5540f1b scores/Misc/Karena Aku Kau Cinta.pdf
+1bf5e7fe5ab4e76b2949bd564e13ce07 scores/Misc/Karena Aku Kau Cinta.pdf
 6acbcc6dcf88279ca5fd162b2e497e50 scores/Misc/Keep In Mind.pdf
 f5b04e70e54f9344a967e964721b65b8 scores/Misc/Kyrie - Mass Of Remembrance.pdf
 294625e5e5b5146bc4b1321e910fb50c scores/Misc/Lamb Of God (Christopher Walker).pdf
@@ -3470,3 +3470,10 @@ f53e7672838df72b388021ec6f1214e8 scores/SPG/With Holy Choirs Of Angels [SPG365].
 0493e8ce442766cebfacbbabe83bac67 scores/SPG/Your Words Are Spirit And Life [SPG368].pdf
 064ee6b7c2044619f521779bf9ad722c musescore/Psalm - Kevin's Wedding.mscz
 f2514f10592dff851741daff48c22224 scores/Psalms/Psalm - Kevin's Wedding.pdf
+3e2a7cfbee2fa3d56fcf502b97b9573f musescore/Psalm 033 - I Will Bless The Lord At All Times (AC).mscz
+6143211c07997cd806acb35a29f1b872 musescore/Psalm 148 - Praise The Name Of The Lord (AC).mscz
+927d16b9cd6ffa1186619999c307c5df recordings/Psalms/Psalm - Kevin's Wedding.m4a
+7c3754ffeb7519c0baff92b47e75b925 scores/Psalms/Psalm 033 - I Will Bless The Lord At All Times (AC).pdf
+9468380ebbf8633d4412f11984286856 scores/Psalms/Psalm 148 - Praise The Name Of The Lord (AC).pdf
+ef5f8f6637b5bd909ec33c0b9e26a857 recordings/BB/For All The Saints [BB728; bb725].link
+c964e8d464910e9e315e11f2c41e6c17 recordings/BB/Beautitudes [BB642; bb616].link

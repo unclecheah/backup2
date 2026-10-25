@@ -14,23 +14,26 @@ ac66d84c6d6c0e32c59c298437d4f3d3 musescore/I Give Myself To You.mscz
 56b68596a346fa88c1fff05787f32665 musescore/In Every Age [BB469; bb472] D.mscz
 f6ff46fd39819eb111660d25abadce56 musescore/In Every Age [BB469; bb472] G.mscz
 65bd3c7927ba828f06e12b7770e39ab9 musescore/Intone.mscz
-56797352637e1f5172715f844595d091 musescore/Karena Aku Kau Cinta.mscz
+c0b2b7789ac96dfd2d886bb0a4fe531c musescore/Karena Aku Kau Cinta.mscz
 b485ca5a483d1d9ed8871dc270774f9c musescore/Kyrie - Mass Of Remembrance.mscz
 3035bf9a48b02aa22ed7c2ded5e7a214 musescore/Lamb Of God.mscz
 c61ecb3e8109a810d82ef6c2b2426666 musescore/Litany Of Saints 2.mscz
 ad3ba5c874083c4ff08aa09ca879ef37 musescore/People Need The Lord.mscz
 67577e4270e7f9b39d7478798834535e musescore/Ps89.mscz
+064ee6b7c2044619f521779bf9ad722c musescore/Psalm - Kevin's Wedding.mscz
 14106e0276bdd7d45421c3fed55d76e4 musescore/Psalm 008 - How Great Is Your Name (AC).mscz
 934831ab80098a7b5d922d49d531f577 musescore/Psalm 014 - The Just Will Live In The Presence Of The Lord (AC).mscz
 033218efc5683e4e75f52d541487c06a musescore/Psalm 015 - Preserve Me God I Take Refuge In You (AC).mscz
 d157c0c3ed3282366efe45d02a8bede6 musescore/Psalm 023 - The Lord Is My Shepherd.mscz
 afbe04513933db62cf822be24da5c447 musescore/psalm 030.mscz
+3e2a7cfbee2fa3d56fcf502b97b9573f musescore/Psalm 033 - I Will Bless The Lord At All Times (AC).mscz
 40845662e34a1224ad0c0432a3782fc6 musescore/Psalm 046 - God Goes Up With Shouts Of Joy (AC).mscz
 edf350632bd08c78957319c0e57b88e2 musescore/Psalm 067 - O God Let All The Nations.mscz
 06aa4696aef4b8419cb6e493b2fbf781 musescore/Psalm 097 - The Lord Comes To Rule The Peoples (AC).mscz
 5c6fd6d6fc0acb5fbd91e1656fc21826 musescore/Psalm 102 - The Lord Is Compassion And Love (AC).mscz
 87ad981302fc47f4ca5a058a76c85868 musescore/Psalm 103 - Send Forth Your Spirit O Lord.mscz
 652b1739a756b573985e0e38f9e65607 musescore/Psalm 109 - You Are A Priest Forever (AC).mscz
+6143211c07997cd806acb35a29f1b872 musescore/Psalm 148 - Praise The Name Of The Lord (AC).mscz
 f6c1393c56be1b8c724c006a1bdf5129 musescore/Psalm Yr A Adv 01 (121) - I Rejoiced When I Heard Them Say (AC).mscz
 36d1e0a7f31f1ab2e41ec5239aedf484 musescore/Psalm Yr A Adv 02 (071) - In His Days Justice Shall Flourish (AC).mscz
 2756376af7bba7ddcf97a9433605ac12 musescore/Psalm Yr A Adv 03 (145) - Come Lord And Save Us (AC).mscz
@@ -224,6 +227,7 @@ d471336fdfc33ee5c7278a0cccfe9a8f musescore/To Believe SATB.mscz
 f924ff0fcf0899e41b628161e21a817f musescore/To Rescue A Sinner Like Me.mscz
 ac8a28ccb7930989841477aa3db23d0c musescore/Written In Red.mscz
 6190ec1eeb708c6d0410f2a232b6adb1 recordings/BB/Beyond The Days [BB137; bb120].m4a
+ef5f8f6637b5bd909ec33c0b9e26a857 recordings/BB/For All The Saints [BB728; bb725].link
 0b51fdb3558a49bc93c15062d8cb945d recordings/BB/Hail Redeemer King Divine [BB735; bb738].m4a
 95ad6f8b7c9e8206df3cb2aadfea9661 recordings/BB/Mass Of Christ The Saviour [BB919] Holy Holy.TB.m4a
 835020ac3bab7a5a025d27271255cbe5 recordings/BB/Take Up Your Cross [BB723; bb723].m4a
@@ -279,6 +283,7 @@ fb9a7c3c0e89196c56194468eb8e6751 recordings/Misc/These Alone Are Enough (Choral)
 df153573c70ea30c1ab453a44cf870f1 recordings/Misc/To Rescue A Sinner Like Me.link
 806cafd83846175981fa9b741c44f9bd recordings/Misc/We Are The Reason.mp3
 0ad89965a30a7e216e997ecee778dafb recordings/Misc/With All My Heart.mp3
+927d16b9cd6ffa1186619999c307c5df recordings/Psalms/Psalm - Kevin's Wedding.m4a
 6f761897e86470d8e4d9a773ef40cd3e recordings/Psalms/Psalm 008 - How Great Is Your Name (AC).m4a
 bf05b9d0e8b4a466ec138e25c0459ca4 recordings/Psalms/Psalm 014 - The Just Will Live In The Presence Of The Lord (AC).m4a
 8ee41bfaf98db7dbc93743f2bbd0dcc6 recordings/Psalms/Psalm 015 - Preserve Me O God I Take Refuge In You (AC).m4a
@@ -586,7 +591,6 @@ ce58964b6963a16b6836b2951c568120 scores/BB/Be Not Afraid [BB431; bb432].pdf
 6093ec5cce1f5c815e562726477402d2 scores/BB/Be Still My Soul [BB696; bb679].pdf
 9677a00d717985060d7aa86e58b80548 scores/BB/Be Thou My Vision [BB398; bb382].pdf
 e62629f2ccabb2a4194b0a78946eb97d scores/BB/Beautiful Saviour [BB202; bb199].pdf
-f5ccd50015299df2efad4034f9b14fb0 scores/BB/Beautitudes [BB642; bb616].pdf
 036c97ffdfeea1eafccbd373d2aeae55 scores/BB/Because The Lord Is My Shepherd [BB464; bb475].pdf
 9204960d7327ed08c878866ab0b04d56 scores/BB/Behold The Cross [BB149; bb149].pdf
 3aa7b78244148e9131dc0da332f507a1 scores/BB/Behold The Lamb [BB337; bb319].pdf
@@ -1735,7 +1739,7 @@ f00ad00fd4c24a3f2485c722b3970bfb scores/Misc/John 3-16.pdf
 f874ff111b57b3a0224cad1ad755e577 scores/Misc/Joy To The World --.pdf
 bc38b64147bdbbabee18ee5585ba9247 scores/Misc/Joy To The World.pdf
 5a42a291559b6817a7bc1787e9c5720b scores/Misc/Jubilate Servite.pdf
-0b19aee66e00f6bb18073f07a5540f1b scores/Misc/Karena Aku Kau Cinta.pdf
+1bf5e7fe5ab4e76b2949bd564e13ce07 scores/Misc/Karena Aku Kau Cinta.pdf
 6acbcc6dcf88279ca5fd162b2e497e50 scores/Misc/Keep In Mind.pdf
 f5b04e70e54f9344a967e964721b65b8 scores/Misc/Kyrie - Mass Of Remembrance.pdf
 294625e5e5b5146bc4b1321e910fb50c scores/Misc/Lamb Of God (Christopher Walker).pdf
@@ -2585,6 +2589,7 @@ c45957ecc4fb8404a47b7e9f36f2294f scores/OCP/You Have Put On Christ.pdf
 13cbba204b3a9726066f80b17ac00e64 scores/OCP/Your Grace Is Enough.pdf
 705c04ab7d184f3ef223a2fdc3cc06c1 scores/OCP/Your Words Are Spirit And Life.pdf
 d5b6dee6419aca882922c3dc1887d482 scores/Psalms/Psalm - Anne's Wedding.pdf
+f2514f10592dff851741daff48c22224 scores/Psalms/Psalm - Kevin's Wedding.pdf
 b8912d32c3ce1c2aa6827e293feeb4b4 scores/Psalms/Psalm 008 - How Great Is Your Name (AC).pdf
 7ffa8c29afc5508d18310feaf6e7b031 scores/Psalms/Psalm 014 - The Just Will Live In The Presence Of The Lord (AC).pdf
 9046b8ffc0befb2ed2b313e3a8699264 scores/Psalms/Psalm 015 - Preserve Me God I Take Refuge In You (AC).pdf
@@ -2608,6 +2613,7 @@ c5a06bc0a0c15d35a6ac02be34fb19e9 scores/Psalms/Psalm 032 - The Poor Man Called T
 19cff7f7abe4735d4802c142e88439ba scores/Psalms/Psalm 032 - This Poor Man Called The Lord Heard Him (DJ).pdf
 980ff0986d13872f6c5e28d7dcfccec9 scores/Psalms/Psalm 032 - This Poor Man Called The Lord Heard Him (EL) -kb-.pdf
 c5a06bc0a0c15d35a6ac02be34fb19e9 scores/Psalms/Psalm 032 - This Poor Man Called The Lord Heard Him (EL).pdf
+7c3754ffeb7519c0baff92b47e75b925 scores/Psalms/Psalm 033 - I Will Bless The Lord At All Times (AC).pdf
 104ecb68842728d6d75fc10bc569bdee scores/Psalms/Psalm 040 - Here I Am --.pdf
 a08cd09d6c3f9d031491e4d30bf705f2 scores/Psalms/Psalm 040 - Here I Am.pdf
 0c3d7850e29bb64a5788afb5446f797d scores/Psalms/Psalm 042 - As The Deer Longs (Bob Hurd) -kb-.pdf
@@ -2675,6 +2681,7 @@ b9feeed2fdef5704e244109acd85f532 scores/Psalms/Psalm 137 - By The Rivers Of Baby
 7925634adf055c8448c6a9c2d1ae597f scores/Psalms/Psalm 146 - I Will Praise The Lord (Farrell) -kb-.pdf
 6b1b33efd5289c091443c38a001feb7d scores/Psalms/Psalm 146 - I Will Praise The Lord (Farrell).pdf
 b0102c7a3b425b27bd5bc3ddf6e3076a scores/Psalms/Psalm 146 - My Soul Gives Praise (Malcolm Nerva).pdf
+9468380ebbf8633d4412f11984286856 scores/Psalms/Psalm 148 - Praise The Name Of The Lord (AC).pdf
 d5d582c01d4e574dd54d33f617be156f scores/Psalms/Psalm Tones.pdf
 ff17f8a397c298256a79d75a08ae2c14 scores/Psalms/Psalm Yr A Adv 01 (121) - I Rejoiced When I Heard Them Say (AC).pdf
 8fef1beb161bd40a8f3c5cca36696596 scores/Psalms/Psalm Yr A Adv 01 (121) - I Rejoiced When I Heard Them Say.pdf
@@ -3468,5 +3475,5 @@ f53e7672838df72b388021ec6f1214e8 scores/SPG/With Holy Choirs Of Angels [SPG365].
 04ec4a56cb2077689551e7584fc394b4 scores/SPG/Ye Sons And Daughters [SPG366].pdf
 04ec4a56cb2077689551e7584fc394b4 scores/SPG/You Are Near [SPG367].pdf
 0493e8ce442766cebfacbbabe83bac67 scores/SPG/Your Words Are Spirit And Life [SPG368].pdf
-064ee6b7c2044619f521779bf9ad722c musescore/Psalm - Kevin's Wedding.mscz
-f2514f10592dff851741daff48c22224 scores/Psalms/Psalm - Kevin's Wedding.pdf
+c964e8d464910e9e315e11f2c41e6c17 recordings/BB/Beautitudes [BB642; bb616].link
+02fdb68e24c446d8b926c5f85028294e scores/BB/Beautitudes [BB642; bb616].pdf

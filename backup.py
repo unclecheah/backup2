@@ -172,6 +172,15 @@ def updateHash (node, file, newHash):
 
 	path.write_text ("\n".join (lines) + "\n", encoding="utf-8")
 
+def findFiles (hashes, searchText):
+	searchText = searchText.casefold()
+
+	return {
+		filename: md5
+		for filename, md5 in hashes.items()
+		if searchText in filename.casefold()
+	}
+
 def updateFile (srcNode, dstNode, file):
 	src = Path (config['nodes'][srcNode]['rootDir']) / file
 	dst = Path (config['nodes'][dstNode]['rootDir']) / file
@@ -249,6 +258,7 @@ def msg ():
 		"Usage: backup.py compare <src> <dst>\n"
 		"       backup.py update <src> <dst>\n"
 		"       backup.py init <src>\n"
+		"       backup.py delete <src> <file> -x\n"
 	)
 
 def main ():
@@ -263,18 +273,50 @@ def main ():
 	src = sys.argv[2]
 	srcType = config["nodes"][src]["type"]
 
-	if len(sys.argv) > 3:
-		dst = sys.argv[3]
-		dstType = config["nodes"][dst]["type"]
+	# if len(sys.argv) > 3:
+	# 	dst = sys.argv[3]
+	# 	dstType = config["nodes"][dst]["type"]
 
-	if opn not in ["compare", "update", "init"]:
+	if opn not in ["compare", "update", "init", "delete"]:
 		print ("operation not recognized")
 		return
 
+
+	# init
 	if opn == "init":
 		if srcType == "local": initHashLocal (src)
 		elif srcType == "ftps": initHashFtp (src)
 		return
+
+
+
+	if len(sys.argv) < 4:
+		msg ()
+		return
+
+	# delete
+	if opn == "delete":
+		if (src not in config["nodes"]):
+			print ("source node not found")
+			return
+
+		file = sys.argv[3]
+		hashes = readHashes (f"{src}.hash")
+		matches = findFiles (hashes, file)
+
+		if len(sys.argv) > 4 and sys.argv[4] == '-x':
+			for filename, md5 in matches.items():
+				pass
+		else:
+			for filename, md5 in matches.items():
+				print (md5, filename)
+
+		return
+
+
+	# compare / update
+	dst = sys.argv[3]
+	dstType = config["nodes"][dst]["type"]
 
 	if (src not in config["nodes"]):
 		print ("source node not found")

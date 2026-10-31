@@ -10,6 +10,7 @@
 		"~$*",
 		".DS_Store",
 		"combined/",
+		"archive/",
 		"work/"
 	],
 	"nodes": {
@@ -26,6 +27,22 @@
 			"rootDir": "Z:/Music/choir"
 		},
 		"web": {
+			"type": "ftps",
+			"rootDir": "choir.unclecheah.com/data/music",
+			"host": "unclecheah.com",
+			"port": 21,
+			"username": "unclecheah@unclecheah.com",
+			"password": "uncle1218Pass",
+			"verify_certificate": false,
+			"verify_remote_contents": false,
+			"timeout": 60
+		},
+
+		"testFile": {
+			"type": "local",
+			"rootDir": "c:/data/tmp/music"
+		},
+		"testWeb": {
 			"type": "ftps",
 			"rootDir": "choir.unclecheah.com/data/music",
 			"host": "unclecheah.com",

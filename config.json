@@ -44,7 +44,7 @@
 		},
 		"testWeb": {
 			"type": "ftps",
-			"rootDir": "choir.unclecheah.com/data/music",
+			"rootDir": "test.unclecheah.com/music",
 			"host": "unclecheah.com",
 			"port": 21,
 			"username": "unclecheah@unclecheah.com",

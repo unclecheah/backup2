@@ -1,9 +1,10 @@
-from ftplib import FTP, error_perm
+from ftplib import FTP, error_perm, all_errors
 from datetime import datetime
 from pathlib import Path, PurePosixPath
 import os
 import io
 import re
+import posixpath
 import json
 import hashlib
 import time
@@ -152,25 +153,57 @@ def cmpHash (node1, node2):
 		elif first[filename] != second[filename]:
 			print (f"xxx {filename}")
 
-def updateHash (node, file, newHash):
+# def updateHash (node, file, newHash):
+# 	path = Path (f"{node}.hash")
+# 	lines = (
+# 		path.read_text (encoding="utf-8-sig").splitlines ()
+# 		if path.exists ()
+# 		else []
+# 	)
+# 	found = False
+
+# 	for index, line in enumerate (lines):
+# 		oldHash, separator, storedFilename = line.partition (" ")
+
+# 		if separator and storedFilename == file:
+# 			lines[index] = f"{newHash} {storedFilename}"
+# 			found = True
+
+# 	if not found: lines.append (f"{newHash} {file}")
+
+# 	path.write_text ("\n".join (lines) + "\n", encoding="utf-8")
+
+def updateHash (node, file, newHash = None):
 	path = Path (f"{node}.hash")
 	lines = (
 		path.read_text (encoding="utf-8-sig").splitlines ()
 		if path.exists ()
 		else []
 	)
+
+	file = str (file)
+	updatedLines = []
 	found = False
 
-	for index, line in enumerate (lines):
+	for line in lines:
 		oldHash, separator, storedFilename = line.partition (" ")
 
 		if separator and storedFilename == file:
-			lines[index] = f"{newHash} {storedFilename}"
 			found = True
+			if newHash is not None: updatedLines.append (f"{newHash} {storedFilename}")
 
-	if not found: lines.append (f"{newHash} {file}")
+		else: updatedLines.append (line)
 
-	path.write_text ("\n".join (lines) + "\n", encoding="utf-8")
+	if not found:
+		if newHash is None: return False
+		updatedLines.append (f"{newHash} {file}")
+
+	contents = "\n".join (updatedLines)
+	if updatedLines: contents += "\n"
+
+	path.write_text (contents, encoding= "utf-8")
+	return True
+
 
 def findFiles (hashes, searchText):
 	searchText = searchText.casefold()
@@ -253,12 +286,68 @@ def bulkUpdFtp (ftpC, srcNode, dstNode):
 		print (f"Updating {item}")
 		updateFtp (ftpC, srcNode, dstNode, item)
 
+def deleteFile (src):
+	file = sys.argv[3]
+	hashes = readHashes (f"{src}.hash")
+	matches = findFiles (hashes, file)
+
+	if len(sys.argv) > 4 and sys.argv[4] == '-x':
+		for filename, md5 in matches.items():
+			target = Path (config['nodes'][src]['rootDir']) / filename
+			
+			try:
+				target.unlink ()
+			except OSError as error:
+				print (f"failed: {filename} - {error}")
+				continue
+
+			updateHash (src, filename, None)
+			print (f"Deleted: {filename}")
+
+	else:
+		for filename, md5 in matches.items():
+			print (md5, filename)
+
+	return
+
+def deleteFtp (src):
+	# print ("Deleting ftp...")
+	file = sys.argv[3]
+	hashes = readHashes (f"{src}.hash")
+	matches = findFiles (hashes, file)
+
+	if len(sys.argv) > 4 and sys.argv[4] == '-x':
+		ftpC = ftpLogin (sys.argv[2])
+
+		for filename in matches:
+			root = f"{config['nodes'][src]['rootDir']}"
+			target = posixpath.join (
+				root.replace ("\\", "/"),
+				filename.replace ("\\", "/")
+			)
+
+			try:
+				ftpC.delete (target)
+			except all_errors as error:
+				print (f"failed: {filename} - {error}")
+				continue
+
+			updateHash (src, filename, None)
+			print (f"Deleted: {filename}")
+
+	else:
+		for filename, md5 in matches.items():
+			print (md5, filename)
+
+	return
+
+
 def msg ():
 	print (
-		"Usage: backup.py compare <src> <dst>\n"
-		"       backup.py update <src> <dst>\n"
-		"       backup.py init <src>\n"
-		"       backup.py delete <src> <file> -x\n"
+		"Usage: backup.py compare <srcNode> <dstNode>\n"
+		"       backup.py update <srcNode> <dstNode>\n"
+		"       backup.py init <srcNode>\n"
+		"       backup.py delete <srcNode> <file> [-x]\n"
 	)
 
 def main ():
@@ -272,10 +361,6 @@ def main ():
 	opn = sys.argv[1]
 	src = sys.argv[2]
 	srcType = config["nodes"][src]["type"]
-
-	# if len(sys.argv) > 3:
-	# 	dst = sys.argv[3]
-	# 	dstType = config["nodes"][dst]["type"]
 
 	if opn not in ["compare", "update", "init", "delete"]:
 		print ("operation not recognized")
@@ -300,17 +385,8 @@ def main ():
 			print ("source node not found")
 			return
 
-		file = sys.argv[3]
-		hashes = readHashes (f"{src}.hash")
-		matches = findFiles (hashes, file)
-
-		if len(sys.argv) > 4 and sys.argv[4] == '-x':
-			for filename, md5 in matches.items():
-				pass
-		else:
-			for filename, md5 in matches.items():
-				print (md5, filename)
-
+		if srcType == "local": deleteFile (src)
+		elif srcType == "ftps": deleteFtp (src)
 		return
 
 
@@ -392,7 +468,7 @@ def tReadFileByLine ():
 
 def tUpdateHash ():
 	# updateHash ("test", "musescore/Beloved.mscz", "414f86225154dd5e25974ff03533zzzz")
-	updateHash ("test", "musescore/Beloved2.mscz", "414f86225154dd5e25974ff03533zzzz")
+	updateHash ("testFile", "scores/Misc/All The Time.pdf", "414f86225154dd5e25974ff03533zzzz")
 
 def tArraySplit ():
 	arr = [];
